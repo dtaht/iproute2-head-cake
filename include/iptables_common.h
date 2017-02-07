@@ -1,6 +1,7 @@
 #ifndef _IPTABLES_COMMON_H
 #define _IPTABLES_COMMON_H
 /* Shared definitions between ipv4 and ipv6. */
+#include <stdint.h>
 
 enum exittype {
 	OTHER_PROBLEM = 1,
