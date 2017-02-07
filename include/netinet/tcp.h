@@ -55,70 +55,70 @@
 # include <sys/types.h>
 
 # ifdef __FAVOR_BSD
-typedef	u_int32_t tcp_seq;
+typedef	uint32_t tcp_seq;
 /*
  * TCP header.
  * Per RFC 793, September, 1981.
  */
 struct tcphdr
   {
-    u_int16_t th_sport;		/* source port */
-    u_int16_t th_dport;		/* destination port */
+    uint16_t th_sport;		/* source port */
+    uint16_t th_dport;		/* destination port */
     tcp_seq th_seq;		/* sequence number */
     tcp_seq th_ack;		/* acknowledgement number */
 #  if __BYTE_ORDER == __LITTLE_ENDIAN
-    u_int8_t th_x2:4;		/* (unused) */
-    u_int8_t th_off:4;		/* data offset */
+    uint8_t th_x2:4;		/* (unused) */
+    uint8_t th_off:4;		/* data offset */
 #  endif
 #  if __BYTE_ORDER == __BIG_ENDIAN
-    u_int8_t th_off:4;		/* data offset */
-    u_int8_t th_x2:4;		/* (unused) */
+    uint8_t th_off:4;		/* data offset */
+    uint8_t th_x2:4;		/* (unused) */
 #  endif
-    u_int8_t th_flags;
+    uint8_t th_flags;
 #  define TH_FIN	0x01
 #  define TH_SYN	0x02
 #  define TH_RST	0x04
 #  define TH_PUSH	0x08
 #  define TH_ACK	0x10
 #  define TH_URG	0x20
-    u_int16_t th_win;		/* window */
-    u_int16_t th_sum;		/* checksum */
-    u_int16_t th_urp;		/* urgent pointer */
+    uint16_t th_win;		/* window */
+    uint16_t th_sum;		/* checksum */
+    uint16_t th_urp;		/* urgent pointer */
 };
 
 # else /* !__FAVOR_BSD */
 struct tcphdr
   {
-    u_int16_t source;
-    u_int16_t dest;
-    u_int32_t seq;
-    u_int32_t ack_seq;
+    uint16_t source;
+    uint16_t dest;
+    uint32_t seq;
+    uint32_t ack_seq;
 #  if __BYTE_ORDER == __LITTLE_ENDIAN
-    u_int16_t res1:4;
-    u_int16_t doff:4;
-    u_int16_t fin:1;
-    u_int16_t syn:1;
-    u_int16_t rst:1;
-    u_int16_t psh:1;
-    u_int16_t ack:1;
-    u_int16_t urg:1;
-    u_int16_t res2:2;
+    uint16_t res1:4;
+    uint16_t doff:4;
+    uint16_t fin:1;
+    uint16_t syn:1;
+    uint16_t rst:1;
+    uint16_t psh:1;
+    uint16_t ack:1;
+    uint16_t urg:1;
+    uint16_t res2:2;
 #  elif __BYTE_ORDER == __BIG_ENDIAN
-    u_int16_t doff:4;
-    u_int16_t res1:4;
-    u_int16_t res2:2;
-    u_int16_t urg:1;
-    u_int16_t ack:1;
-    u_int16_t psh:1;
-    u_int16_t rst:1;
-    u_int16_t syn:1;
-    u_int16_t fin:1;
+    uint16_t doff:4;
+    uint16_t res1:4;
+    uint16_t res2:2;
+    uint16_t urg:1;
+    uint16_t ack:1;
+    uint16_t psh:1;
+    uint16_t rst:1;
+    uint16_t syn:1;
+    uint16_t fin:1;
 #  else
 #   error "Adjust your <bits/endian.h> defines"
 #  endif
-    u_int16_t window;
-    u_int16_t check;
-    u_int16_t urg_ptr;
+    uint16_t window;
+    uint16_t check;
+    uint16_t urg_ptr;
 };
 # endif /* __FAVOR_BSD */
 
@@ -186,43 +186,43 @@ enum tcp_ca_state
 
 struct tcp_info
 {
-  u_int8_t	tcpi_state;
-  u_int8_t	tcpi_ca_state;
-  u_int8_t	tcpi_retransmits;
-  u_int8_t	tcpi_probes;
-  u_int8_t	tcpi_backoff;
-  u_int8_t	tcpi_options;
-  u_int8_t	tcpi_snd_wscale : 4, tcpi_rcv_wscale : 4;
+  uint8_t	tcpi_state;
+  uint8_t	tcpi_ca_state;
+  uint8_t	tcpi_retransmits;
+  uint8_t	tcpi_probes;
+  uint8_t	tcpi_backoff;
+  uint8_t	tcpi_options;
+  uint8_t	tcpi_snd_wscale : 4, tcpi_rcv_wscale : 4;
 
-  u_int32_t	tcpi_rto;
-  u_int32_t	tcpi_ato;
-  u_int32_t	tcpi_snd_mss;
-  u_int32_t	tcpi_rcv_mss;
+  uint32_t	tcpi_rto;
+  uint32_t	tcpi_ato;
+  uint32_t	tcpi_snd_mss;
+  uint32_t	tcpi_rcv_mss;
 
-  u_int32_t	tcpi_unacked;
-  u_int32_t	tcpi_sacked;
-  u_int32_t	tcpi_lost;
-  u_int32_t	tcpi_retrans;
-  u_int32_t	tcpi_fackets;
+  uint32_t	tcpi_unacked;
+  uint32_t	tcpi_sacked;
+  uint32_t	tcpi_lost;
+  uint32_t	tcpi_retrans;
+  uint32_t	tcpi_fackets;
 
   /* Times. */
-  u_int32_t	tcpi_last_data_sent;
-  u_int32_t	tcpi_last_ack_sent;	/* Not remembered, sorry.  */
-  u_int32_t	tcpi_last_data_recv;
-  u_int32_t	tcpi_last_ack_recv;
+  uint32_t	tcpi_last_data_sent;
+  uint32_t	tcpi_last_ack_sent;	/* Not remembered, sorry.  */
+  uint32_t	tcpi_last_data_recv;
+  uint32_t	tcpi_last_ack_recv;
 
   /* Metrics. */
-  u_int32_t	tcpi_pmtu;
-  u_int32_t	tcpi_rcv_ssthresh;
-  u_int32_t	tcpi_rtt;
-  u_int32_t	tcpi_rttvar;
-  u_int32_t	tcpi_snd_ssthresh;
-  u_int32_t	tcpi_snd_cwnd;
-  u_int32_t	tcpi_advmss;
-  u_int32_t	tcpi_reordering;
-  u_int32_t	tcpi_rcv_rtt;
-  u_int32_t	tcpi_rcv_space;
-  u_int32_t	tcpi_total_retrans;
+  uint32_t	tcpi_pmtu;
+  uint32_t	tcpi_rcv_ssthresh;
+  uint32_t	tcpi_rtt;
+  uint32_t	tcpi_rttvar;
+  uint32_t	tcpi_snd_ssthresh;
+  uint32_t	tcpi_snd_cwnd;
+  uint32_t	tcpi_advmss;
+  uint32_t	tcpi_reordering;
+  uint32_t	tcpi_rcv_rtt;
+  uint32_t	tcpi_rcv_space;
+  uint32_t	tcpi_total_retrans;
 
 };
 

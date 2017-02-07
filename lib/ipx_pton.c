@@ -6,10 +6,10 @@
 
 #include "utils.h"
 
-static int ipx_getnet(u_int32_t *net, const char *str)
+static int ipx_getnet(uint32_t *net, const char *str)
 {
 	int i;
-	u_int32_t tmp;
+	uint32_t tmp;
 
 	for(i = 0; *str && (i < 8); i++) {
 
@@ -31,19 +31,19 @@ static int ipx_getnet(u_int32_t *net, const char *str)
 	return -1;
 }
 
-static int ipx_getnode(u_int8_t *node, const char *str)
+static int ipx_getnode(uint8_t *node, const char *str)
 {
 	int i;
-	u_int32_t tmp;
+	uint32_t tmp;
 
 	for(i = 0; i < 6; i++) {
 		if ((tmp = get_hex(*str++)) == -1)
 			return -1;
-		node[i] = (u_int8_t)tmp;
+		node[i] = (uint8_t)tmp;
 		node[i] <<= 4;
 		if ((tmp = get_hex(*str++)) == -1)
 			return -1;
-		node[i] |= (u_int8_t)tmp;
+		node[i] |= (uint8_t)tmp;
 		if (*str == ':')
 			str++;
 	}
